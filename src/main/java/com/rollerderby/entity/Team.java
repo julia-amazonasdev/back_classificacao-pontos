@@ -1,5 +1,6 @@
 package com.rollerderby.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Team {
@@ -11,6 +12,14 @@ public class Team {
 	private int totalPointsAgainst; //numero de pontos sofridos 
     private List<String> matchResults; // Histórico de jogos
     
+	public Team(String team1) {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -21,31 +30,56 @@ public class Team {
 		return victories;
 	}
 	public void setVictories(int victories) {
-		this.victories = victories;
+		this.victories = 0;
 	}
 	public int getDefeats() {
 		return defeats;
 	}
 	public void setDefeats(int defeats) {
-		this.defeats = defeats;
+		this.defeats = 0;
 	}
 	public int getTotalPoints() {
 		return totalPoints;
 	}
 	public void setTotalPoints(int totalPoints) {
-		this.totalPoints = totalPoints;
+		this.totalPoints = 0;
 	}
 	public int getTotalPointsAgainst() {
 		return totalPointsAgainst;
 	}
 	public void setTotalPointsAgainst(int totalPointsAgainst) {
-		this.totalPointsAgainst = totalPointsAgainst;
+		this.totalPointsAgainst = 0;
 	}
 	public List<String> getMatchResults() {
 		return matchResults;
 	}
 	public void setMatchResults(List<String> matchResults) {
-		this.matchResults = matchResults;
+		this.matchResults = new ArrayList<>();
 	}
+
+
+
+
+
+	public void addVictory(int pointsFor, int pointsAgainst) {
+		this.victories++;
+		this.totalPoints += pointsFor;
+		this.totalPointsAgainst += pointsAgainst;
+		this.matchResults.add("V " + pointsFor + "-" + pointsAgainst);
+		
+	}
+	
+	public void addDefeat(int pointsFor, int pointsAgainst) {
+        this.defeats++;
+        this.totalPoints += pointsFor;
+        this.totalPointsAgainst += pointsAgainst;
+        this.matchResults.add("D " + pointsFor + "-" + pointsAgainst);
+    }
+
+
+
+
+
+	
 
 }

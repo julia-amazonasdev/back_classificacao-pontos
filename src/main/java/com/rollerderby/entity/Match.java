@@ -9,6 +9,14 @@ public class Match {
 	private String date; // data do jogo
 	
 	
+	public Match(String team12, String team22, int score12, int score22, String date2) {
+		 	this.team1 = team1;
+	        this.team2 = team2;
+	        this.score1 = score1;
+	        this.score2 = score2;
+	        this.date = date;
+	}
+	
 	public String getTeam1() {
 		return team1;
 	}
