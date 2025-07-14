@@ -6,8 +6,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import com.rollerderby.entity.Match;
-import com.rollerderby.entity.Team;
 import com.rollerderby.services.*;
 
 
@@ -26,6 +24,8 @@ public class Scraper {
 			System.out.println("Página carregada, carregando resultados...");
 			
 			Elements gameElements = tryMultipleSelectors(doc);
+			
+			 
 			
 			if (gameElements.isEmpty()) {
 				
@@ -244,6 +244,8 @@ public class Scraper {
 	private void addExampleData() {
 		System.out.println("Adicionando dados de exemplo...");
 		
+
+		
 		// Exemplos dos dois primeiros dias
 		matchservice.addMatch("Team Australia", "Team England", 212, 189, "03/07");
 		matchservice.addMatch("Team France", "Team Germany", 198, 201, "03/07");
@@ -268,9 +270,9 @@ public class Scraper {
 		
 		int count = 0;
 		for (Element element : elementsWithNumbers) {
-			if (count >= 24) break; 
+			if (count >= 100) break; 
 			
-			String text = element.ownText().trim();
+			String text = element.text().trim();
 			if (!text.isEmpty() && text.matches(".*\\d+.*")) {
 				System.out.println("Elemento: " + element.tagName());
                 System.out.println("Classe: " + element.className());
@@ -278,6 +280,7 @@ public class Scraper {
                 System.out.println("Texto: " + text);
                 System.out.println("Seletor: " + element.cssSelector());
                 System.out.println("-".repeat(40));
+                System.out.println("HTML: " + element.outerHtml());
                 count++;
 				
 			}
@@ -290,7 +293,7 @@ public class Scraper {
 	private Elements tryMultipleSelectors(Document doc) {
 		
 		String[] selectors = {
-				".game-score", //seletor encotrado no html da pagina para o resultado do jogo
+				".game-score",".game-result", ".match", ".score" //seletor encotrado no html da pagina para o resultado do jogo
 	};
 		for (String selector : selectors) {
 			
